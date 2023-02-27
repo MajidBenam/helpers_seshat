@@ -1,0 +1,12 @@
+INSERT INTO crisisdb_land_taxes_collected (polity_id, year_from, year_to, note, land_taxes_collected, finalized, tag, name, created_date) VALUES (3, 1652, 1652, NULL, 49795, True, 'TRS', 'Land Taxes Collected', '2022-07-12');
+INSERT INTO crisisdb_land_yield (polity_id, year_from, year_to, note, land_yield, finalized, tag, name, created_date) VALUES (3, 1652, 1652, NULL, 315991, True, 'TRS', 'Land Yield', '2022-07-12');
+INSERT INTO crisisdb_land_taxes_collected (polity_id, year_from, year_to, note, land_taxes_collected, finalized, tag, name, created_date) VALUES (3, 1685, 1685, NULL, 38809, True, 'TRS', 'Land Taxes Collected', '2022-07-12');
+INSERT INTO crisisdb_land_yield (polity_id, year_from, year_to, note, land_yield, finalized, tag, name, created_date) VALUES (3, 1685, 1685, NULL, 415359, True, 'TRS', 'Land Yield', '2022-07-12');
+INSERT INTO crisisdb_land_taxes_collected (polity_id, year_from, year_to, note, land_taxes_collected, finalized, tag, name, created_date) VALUES (3, 1724, 1724, NULL, 33550, True, 'TRS', 'Land Taxes Collected', '2022-07-12');
+INSERT INTO crisisdb_land_yield (polity_id, year_from, year_to, note, land_yield, finalized, tag, name, created_date) VALUES (3, 1724, 1724, NULL, 890648, True, 'TRS', 'Land Yield', '2022-07-12');
+INSERT INTO crisisdb_land_taxes_collected (polity_id, year_from, year_to, note, land_taxes_collected, finalized, tag, name, created_date) VALUES (3, 1766, 1766, NULL, 57360, True, 'TRS', 'Land Taxes Collected', '2022-07-12');
+INSERT INTO crisisdb_land_yield (polity_id, year_from, year_to, note, land_yield, finalized, tag, name, created_date) VALUES (3, 1766, 1766, NULL, 1783965, True, 'TRS', 'Land Yield', '2022-07-12');
+INSERT INTO crisisdb_land_taxes_collected (polity_id, year_from, year_to, note, land_taxes_collected, finalized, tag, name, created_date) VALUES (3, 1784, 1784, NULL, 54348, True, 'TRS', 'Land Taxes Collected', '2022-07-12');
+INSERT INTO crisisdb_land_yield (polity_id, year_from, year_to, note, land_yield, finalized, tag, name, created_date) VALUES (3, 1784, 1784, NULL, 1646449, True, 'TRS', 'Land Yield', '2022-07-12');
+INSERT INTO crisisdb_land_taxes_collected (polity_id, year_from, year_to, note, land_taxes_collected, finalized, tag, name, created_date) VALUES (4, 1820, 1820, NULL, 63478, True, 'TRS', 'Land Taxes Collected', '2022-07-12');
+INSERT INTO crisisdb_land_yield (polity_id, year_from, year_to, note, land_yield, finalized, tag, name, created_date) VALUES (4, 1820, 1820, NULL, 2313710, True, 'TRS', 'Land Yield', '2022-07-12');

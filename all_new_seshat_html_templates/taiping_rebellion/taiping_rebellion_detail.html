@@ -1,0 +1,161 @@
+{% extends "core/detail_base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block addmore %}
+<a href="{% url 'taiping_rebellion-create' %}" class="btn btn-outline-success mx-3 my-4 float-end"> &#128934; &nbsp; Add Another Fact &nbsp; <i class="fa fa-plus"></i>
+</a>
+<a href="{% url 'taiping_rebellions' %}" class="btn btn-outline-primary ms-auto my-4 float-end">&#8983; See All Such Facts
+</a>
+{% endblock addmore %}
+
+{% block myheadings %}
+<th class = "fw-normal" style="text-align: center;" scope="col">Taiping Rebellion
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Rebel
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Place
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Ethnic Composition
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Family Background
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Role
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Rank
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Civil Examination
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+{% endblock myheadings %}
+
+{% block extracols %}
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.taiping_rebellion }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.rebel }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.place }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.ethnic_composition }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.family_background }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.role }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.rank }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.civil_examination }}
+</td>
+{% endblock extracols %}
+        

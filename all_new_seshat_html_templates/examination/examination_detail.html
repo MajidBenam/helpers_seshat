@@ -1,0 +1,143 @@
+{% extends "core/detail_base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block addmore %}
+<a href="{% url 'examination-create' %}" class="btn btn-outline-success mx-3 my-4 float-end"> &#128934; &nbsp; Add Another Fact &nbsp; <i class="fa fa-plus"></i>
+</a>
+<a href="{% url 'examinations' %}" class="btn btn-outline-primary ms-auto my-4 float-end">&#8983; See All Such Facts
+</a>
+{% endblock addmore %}
+
+{% block myheadings %}
+<th class = "fw-normal" style="text-align: center;" scope="col">Examination
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">no of Participants
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Degrees Awarded
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Passing Ratio
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Place
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Ratio Examiner Per Candidate
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">no of Examiners
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+{% endblock myheadings %}
+
+{% block extracols %}
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.examination }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.no_of_participants|intcomma }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.degrees_awarded|intcomma }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.passing_ratio }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.place }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.ratio_examiner_per_candidate }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.no_of_examiners|intcomma }}
+</td>
+{% endblock extracols %}
+        

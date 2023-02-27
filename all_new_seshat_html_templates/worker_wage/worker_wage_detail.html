@@ -1,0 +1,143 @@
+{% extends "core/detail_base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block addmore %}
+<a href="{% url 'worker_wage-create' %}" class="btn btn-outline-success mx-3 my-4 float-end"> &#128934; &nbsp; Add Another Fact &nbsp; <i class="fa fa-plus"></i>
+</a>
+<a href="{% url 'worker_wages' %}" class="btn btn-outline-primary ms-auto my-4 float-end">&#8983; See All Such Facts
+</a>
+{% endblock addmore %}
+
+{% block myheadings %}
+<th class = "fw-normal" style="text-align: center;" scope="col">Worker Wage
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Area
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Unskilled Construction
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Skilled Construction
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Number of Districts With Available Data
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Unskilled Arms Manufacturer
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+<th class = "fw-normal" style="text-align: center;" scope="col">Population in Millions in 1787
+<sup>
+<span type="button" data-bs-toggle="popover" data-bs-html="true" data-bs-content="NO DESCRIPTION">&nbsp;<i class="fas fa-question-circle"></i></span>
+</sup>
+</th>
+{% endblock myheadings %}
+
+{% block extracols %}
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.worker_wage }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.area }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.unskilled_construction }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.skilled_construction }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.number_of_districts_with_available_data|intcomma }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.unskilled_arms_manufacturer }}
+</td>
+
+<td class = "{% if obj.tag == 'DSP' %}
+text-danger
+{% elif obj.tag == 'SSP' %}
+text-warning
+{% elif obj.tag == 'UNK' %}
+text-secondary
+{% elif obj.tag == 'IFR' %}
+text-primary
+{% else %}
+text-success
+{% endif %} fw-normal" style="text-align: center;">{{ obj.population_in_millions_in_1787 }}
+</td>
+{% endblock extracols %}
+        

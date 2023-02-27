@@ -1,0 +1,306 @@
+{% extends "core/seshat-base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- Rainbow hr -->
+{% include "core/partials/_rainbow.html" %}
+<!-- form-row and form-group etc are removed in Bootstrap 5 -->
+<div class="container mt-3">
+    <div class="col-md-12">
+    <form action="{% url 'playgrounddownload' %}" method="post">
+        {% csrf_token %}
+        <legend>
+            <div class="row d-flex align-items-center">
+                <div class="col-md-8">
+                    <h4 class="lead-2 text-secondary">Hi, {{user}}.</h4>
+                    <h6 class="lead-2 text-secondary">In this page you can download a selected subset of the the data in:</h6>
+                    <h6><span class="display-6"><i class="fa-solid fa-database"></i> CrisisDB</span></h6>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://seshatdatabank.info/wp-content/themes/seshat/img/logo.png" alt="No Seshat Logo">
+                </div>
+            </div> 
+            <hr class="bg-colorful">
+        </legend>
+
+        <!-- Databases -->
+        <div class="row py-2">
+            <div class="col-md-8">
+                <span class="h5">  <i class="fa-solid fa-circle-chevron-right"></i> </span>  <span class="h4"> <strong> Data Version: &nbsp; &nbsp;</strong> &nbsp; </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <span class="h6"> <i class="fas fa-caret-right"></i>  &nbsp; Choose the version of the database or frozen data from which you want to collect your data. </span>
+            </div>
+        </div>
+        <div class="row mt-2 mb-3 ps-2">
+        <div class="col-md-12 border border-secondary p-2 rounded">
+            <fieldset>      
+            <div class="form-check form-check-inline pe-3">
+                <input class="form-check-input" type="radio" id="eq2020_db" value="Equinox_2020" name="selected_db_version" disabled>
+                <label class="form-check-label" for="eq2020_db"> <span class="h6 pull-left">Equinox 2020</span></label>
+            </div>
+            <div class="form-check form-check-inline pe-3">
+                <input class="form-check-input" type="radio" id="eq2020_db" value="Frozen_1" name="selected_db_version" disabled>
+                <label class="form-check-label" for="eq2020_db"> <span class="h6 pull-left">Frozen <span class="text-secondary">(version 1, Agri)</span></span></label>
+            </div>
+            <div class="form-check form-check-inline pe-3">
+                <input class="form-check-input" type="radio" id="eq2020_db" value="Frozen_2" name="selected_db_version" disabled>
+                <label class="form-check-label" for="eq2020_db"> <span class="h6 pull-left">Frozen <span class="text-secondary">(version 2, MSP)</span></span></label>
+            </div>
+            <div class="form-check form-check-inline pe-3">
+                <input class="form-check-input" type="radio" id="eq2020_db" value="Frozen_3" name="selected_db_version" disabled>
+                <label class="form-check-label" for="eq2020_db"> <span class="h6 pull-left">Frozen <span class="text-secondary">(version 3, BigArticle)</span></span></label>
+            </div>
+            <div class="form-check form-check-inline pe-3">
+                <input class="form-check-input" type="radio" id="eq2020_db" value="Equinox_2021" name="selected_db_version" checked>
+                <label class="form-check-label" for="eq2020_db"> <span class="h6 pull-left">CrisisDB</span></label>
+            </div>
+            </fieldset>      
+
+        </div>
+        </div>
+        <!-- Polities -->
+        <div class="row py-2">
+            <div class="col-md-8">
+                <span class="h5">  <i class="fa-solid fa-circle-chevron-right"></i> </span>  <span class="h4"> <strong> Polity: &nbsp; &nbsp;</strong> &nbsp; </span>
+            </div>
+            <div class="col-md-4 form-check form-switch d-flex justify-content-end">
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="form-check-label" for="btn-check-pol">select <strong><u>all</u></strong> polities</label>
+                        <input type="checkbox" name="btn-check-pol" class="form-control form-check-input" id="btn-check-pol" onclick="polCheckBox(this)">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <span class="h6"> <i class="fas fa-caret-right"></i>  &nbsp; Choose the polity or polities of your interest. </span>
+            </div>
+        </div>
+        <div class="row mt-2 mb-3 ps-2">
+        <div class="col-md-12 border border-secondary p-2 rounded">
+            <fieldset>      
+            {% for polity in allpols %}
+            <div class="form-check form-check-inline pe-3">
+                <input class="form-check-input poloption" type="checkbox" id="{{ polity }}" value="{{ polity }}" name="selected_pols">
+                <label class="form-check-label" for="{{ polity }}"> <span class="h6 pull-left"><strong>{{polity}} &nbsp; &nbsp;</strong> &nbsp; </span></label>
+            </div>
+            {% endfor %}
+             </fieldset>      
+
+        </div>
+        </div>
+
+        <!-- Variables NOT based on sections (TODO: subsections) -->
+        <div class="row py-2">
+            <div class="col-md-8">
+                <span class="h5">  <i class="fa-solid fa-circle-chevron-right"></i> </span>  <span class="h4"> <strong> Variables: &nbsp; &nbsp;</strong> &nbsp; </span>
+            </div>
+            <div class="col-md-4 form-check form-switch d-flex justify-content-end">
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="checkbox" name="var_select_all" class="form-control form-check-input align-middle checkboxinput" id="var_select_all" onclick="varCheckBox(this)">
+                        <label for="var_select_all">select <strong><u>all</u></strong> variables</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <span class="h6"> <i class="fas fa-caret-right"></i>  &nbsp; Choose the variables of your interest. </span>
+            </div>
+        </div>
+        <div class="row mt-2 ps-2">
+            <div class="col-md-12 border border-secondary p-2 rounded">
+                <fieldset>      
+                {% for sec, subsec in all_var_hiers.items %}
+                <div class="row">
+                    <div class="col-md-8">
+                        <span class="h5 ps-2">  <i class="fa-solid fa-circle-chevron-right"></i> </span>  <span class="h4"> <strong>&nbsp; {{sec}} &nbsp; &nbsp;</strong> &nbsp; </span>
+                    </div>
+                    <div class="col-md-4 form-check form-switch d-flex justify-content-end">
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="text-primary" for="btn-check-{{sec}}">select <strong><u>all</u></strong> {{sec}}</label>
+                                <input type="checkbox" name="is_verified" class="form-control form-check-input align-middle checkboxinput" id="btn-check-{{sec}}" 
+                                autocomplete="off" onclick="selectAnyCheck(this, '{{sec}}')"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% for sb, vrs in subsec.items %}
+                <div class="row py-2">
+                    <div class="col-md-8">
+                        <span class="h5 ps-3">  <i class="fa-solid fa-arrow-right-long"></i> </span>  <span class="h6 display"> <strong>&nbsp; {{sb}} &nbsp; &nbsp;</strong> &nbsp; </span>
+                    </div>
+                    <div class="col-md-4 form-check form-switch d-flex justify-content-end">
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="checkbox" name="is_verified" class="form-control form-check-input align-middle checkboxinput" id="btn-check-{{sb}}"  autocomplete="off" onclick="selectAnyCheck(this, '{{sb}}')">
+                                <label  class="text-primary" for="btn-check-{{sb}}">select <strong><u>all</u></strong> {{sb}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="line-break"></div>
+               
+                    <!-- <h5 class="ps-2"> <i class="fa-solid fa-arrow-right-long"></i>  &nbsp; {{sb}}:</h5> -->
+                    <div class="row ps-4"> 
+                    {% for var, var_name in vrs.items %}
+                    <div class="form-check col-md-4">
+                        <input class="form-check-input varoption {{sec}} {{sb}}" type="checkbox" id="{{ var }}" value="{{ var }}" name="selected_vars">
+                        <label class="form-check-label" for="{{ var }}"><span class="h6 pull-left">{{var_name.0}}</span> &nbsp; <a href="{% url var|add:'s' %}"><small class="badge bg-teal text-dark">{{var_name.1}} </small> &nbsp; </a> </label>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                    <hr class="bg-colorful">
+
+                {% endfor %}
+               {% endfor %}
+
+                <fieldset>      
+
+            </div>
+        </div>
+
+        <div class="row py-2">
+            <div class="col-md-8">
+                <span class="h5">  <i class="fa-solid fa-circle-chevron-right"></i> </span>  <span class="h4"> <strong> Style: &nbsp; &nbsp;</strong> &nbsp; </span>
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-8">
+                    <span class="h6"> <i class="fas fa-caret-right"></i>  &nbsp; Choose the style of your interest. </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 mb-3 ps-2">
+            <div class="col-md-12 border border-secondary p-2 rounded">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="equi_style" value="equinox_style" checked>
+                    <label class="form-check-label" for="equi_style">Equinox</label>
+                  </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="wide_ts" value="wide_style" onclick="timeseries(this)" disabled>
+                    <label class="form-check-label" for="wide_ts">Wide (Time Series)</label>
+                  </div>
+                  <div id="resolution">
+                  </div>
+            </div>
+        </div>
+<!-- Delimiter Selection -->
+        <div class="row">
+            <div class="col-md-8">
+                <span class="h5">  <i class="fa-solid fa-circle-chevron-right"></i> </span>  <span class="h4"> <strong> Delimiter: &nbsp; &nbsp;</strong> &nbsp; </span>
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-8">
+                    <span class="h6"> <i class="fas fa-caret-right"></i>  &nbsp; Choose the delimiter of your interest. </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 mb-3 ps-2">
+            <div class="col-md-12 border border-secondary p-2 rounded">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="SeparatorRadioOptions" id="bar_sep" value="bar" checked>
+                    <label class="form-check-label" for="bar_sep">Bar ("|")</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="SeparatorRadioOptions" id="comma_sep" value="comma" >
+                    <label class="form-check-label" for="comma_sep">Comma (",")</label>
+                </div>
+                <div id="resolution">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-2 py-2 d-grid mx-auto">
+                <button type="submit" class="btn btn-teal my-auto btn-block"> <i class="fas fa-file-csv"></i> &nbsp; Download CSV</button>
+            </div>
+        </div>
+    </form>
+            
+</div>
+</div>
+
+<script>
+    function polCheckBox(source) {
+        let checkboxs = document.getElementsByClassName("poloption");
+        for(let i = 0; i < checkboxs.length ; i++) { //zero-based array
+          checkboxs[i].checked = source.checked
+        }
+      }
+      function varCheckBox(source) {
+        let checkboxs = document.getElementsByClassName("varoption");
+        for(let i = 0; i < checkboxs.length ; i++) { //zero-based array
+          checkboxs[i].checked = source.checked
+        }
+      }
+      function selectAnyCheck(source, my_name) {
+        let checkboxs = document.getElementsByClassName(my_name);
+        for(let i = 0; i < checkboxs.length ; i++) { //zero-based array
+            checkboxs[i].checked = source.checked;
+          }
+      }
+
+      function timeseries() {
+        let my_hr = document.createElement('hr');
+
+        let my_res1 = document.createElement('input');
+        my_res1.type = "radio";
+        my_res1.className = "form-check-input"
+        let my_res2 = document.createElement('input');
+        my_res2.type = "radio";
+        my_res2.className = "form-check-input"
+
+        let my_res3 = document.createElement('input');
+        my_res3.type = "radio";
+        my_res3.className = "form-check-input"
+
+        let my_lab1 = document.createElement('label');
+        my_lab1.className= "form-check-label ps-2 pe-3"
+        let my_lab2 = document.createElement('label');
+        my_lab2.className= "form-check-label ps-2 pe-3"
+
+        let my_lab3 = document.createElement('label');
+        my_lab3.className= "form-check-label ps-2 pe-3"
+
+        let my_lab = document.createElement('label');
+        my_lab.textContent = "Time Series Resolution:";
+        my_lab.className= "form-check-label ps-2 pe-3"
+
+        my_lab1.setAttribute('for', "resolutionRadioOptions");
+        my_lab2.setAttribute('for', "resolutionRadioOptions");
+        my_lab3.setAttribute('for', "resolutionRadioOptions");
+
+        my_res1.setAttribute('name', "resolutionRadioOptions");
+        my_res2.setAttribute('name', "resolutionRadioOptions");
+        my_res3.setAttribute('name', "resolutionRadioOptions");
+
+
+
+        my_lab1.textContent = "100 years";
+        my_lab2.textContent = "50 years";
+        my_lab3.textContent = "10 years";
+
+        var o1 = document.getElementById("wide_ts");
+        var o2 = document.getElementById("resolution");
+
+        if(o1.checked) {
+            o2.appendChild(my_hr);
+            o2.appendChild(my_lab);
+            o2.appendChild(my_res1);
+            o2.appendChild(my_lab1);
+            o2.appendChild(my_res2);
+            o2.appendChild(my_lab2);
+            o2.appendChild(my_res3);
+            o2.appendChild(my_lab3);
+
+        }
+    }
+</script>
+{% endblock %}
